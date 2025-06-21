@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Button from './Button';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 /**
  * Custom hook for managing tasks with localStorage persistence
  */
 const useLocalStorageTasks = () => {
   // Initialize state from localStorage or with empty array
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
+  const [tasks, setTasks] = useLocalStorage('tasks', []);
 
   // Update localStorage when tasks change
   useEffect(() => {
